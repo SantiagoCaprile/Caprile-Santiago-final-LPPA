@@ -26,8 +26,8 @@ window.onload = function() {
         BLANCO: 0
     }
     var colorTablero = [
-        [1,2,3,0,0],
-        [0,0,2,0,0],
+        [0,0,0,0,0],
+        [0,0,0,0,0],
         [0,0,0,0,0],
         [0,0,0,0,0],
         [0,0,0,0,0],
@@ -55,7 +55,7 @@ window.onload = function() {
         }
     }
     document.onkeyup = function(e){
-        if(e.key != "Enter"){
+        if(e.key != "Enter" && e.key != "Backspace"){
             const input_letra = document.activeElement;
             if(input_letra.nextSibling != null && input_letra.value != ""){
                 input_letra.nextSibling.focus();
@@ -65,46 +65,70 @@ window.onload = function() {
     obtenerValoresFila = function (indice){
         resultado = [CANT_COLUMNAS];
         for(var i = 0; i<CANT_COLUMNAS;i++){
-            resultado[i] = document.getElementById(`f${indice}c${i}`).value.toUpperCase(); 
+            resultado[i] = document.getElementById(`f${indice}c${i}`).value.toUpperCase();
         }
-        return resultado; 
+        return resultado;
     }
     guardarRespuesta = function(){
         respuestas = [6];
         for(var i = 0; i < CANT_FILAS; i++){
-            respuestas[i] = obtenerValoresFila(i); 
+            respuestas[i] = obtenerValoresFila(i);
         }
         return respuestas;
     }
-    revisarResultado = function(respuestas, indice){
-    var ganadora = PALABRA_GANADORA.split("");
-    
-    
+
+    revisarLinea = function(lineaRespuesta, indice){
+        var ganadora = PALABRA_GANADORA.split("");
+        var gano = 0;
+        lineaRespuesta.forEach(function(letra,i) {
+        if(ganadora.indexOf(letra) != -1){
+            colorTablero[indice][i] = colores.AMARILLO;
+        } else {
+            colorTablero[indice][i] = colores.GRIS;
+        }
+        if(letra === ganadora[i]){
+            colorTablero[indice][i] = colores.VERDE;
+            gano++;
+        }
+       });
+       return gano === ganadora.length;
+    }
+    lineaEstaCompleta = function(indice){
+        var linea = obtenerValoresFila(indice);
+        var completa = true;
+        linea.forEach(function(letra){
+            if(letra === ""){
+                completa = false;
+            }
+        });
+        return completa;
     }
 
-    revisarLinea = function(respuesta){
-        var ganadora = PALABRA_GANADORA.split("");
-        respuesta.forEach(function(elem,i) {
-        if(elem == ganadora[i]){
-            colorTablero[0,i];
-        }
-        pintarTablero();
-       });
-    }
     inicio = function() {
         for(let i = 0; i<CANT_FILAS; i++){
             var fieldset = document.getElementById(`row${i}`);
             fieldset.onkeydown = function (event){
-                if(event.key === "Enter"){
+                if(event.key === "Enter" && lineaEstaCompleta(i)){
                     var respuestas = guardarRespuesta();
-                    console.log(respuestas);
-                    console.log(colorTablero); 
-                    revisarLinea(respuestas[0]);
+                    var gano = revisarLinea(respuestas[i], i);
+                    pintarTablero();
+                    if(gano){
+                        alert("Ganaste");
+                    } else if (i === CANT_FILAS - 1){
+                        alert("Perdiste");
+                    }
                     if(document.activeElement.parentElement.nextElementSibling != null && document.activeElement.value != "")
                         document.activeElement.parentElement.nextElementSibling.firstChild.focus();
                 }
+                if(event.key === "Backspace"){
+                    document.activeElement.value = "";
+                    if(document.activeElement.previousSibling != null){
+                        document.activeElement.previousSibling.focus();
+                    }
+                }
             }
         }
-    }   
+    }
+
     inicio();
 }
