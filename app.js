@@ -18,13 +18,14 @@ window.onload = function() {
         }
         document.getElementById("f0c0").focus();
     }
-    llenarTablero();
+
     var colores = {
         VERDE: 1,
         AMARILLO: 2,
         GRIS: 3,
         BLANCO: 0
     }
+
     var colorTablero = [
         [0,0,0,0,0],
         [0,0,0,0,0],
@@ -33,6 +34,24 @@ window.onload = function() {
         [0,0,0,0,0],
         [0,0,0,0,0],
     ]
+
+    function prepararPalabras(){
+        setTimeout(5000);
+        fetch('https://palabras-aleatorias-public-api.herokuapp.com/random-by-length?length=5')
+        .then(response => response.json())
+        .then(data => {
+            PALABRA_GANADORA = data.body.Word.toUpperCase();
+            if(PALABRA_GANADORA.indexOf("Á") != -1
+            || PALABRA_GANADORA.indexOf("É") != -1
+            || PALABRA_GANADORA.indexOf("Í") != -1
+            || PALABRA_GANADORA.indexOf("Ó") != -1
+            || PALABRA_GANADORA.indexOf("Ú") != -1){
+                location.reload();
+            } //consultar si está bien refrescar la página para que haga un refetch
+        }).catch(error => {
+            console.log(error);
+        });
+    }
 
     pintarTablero = function(){
         for(let i = 0; i<CANT_FILAS; i++){
@@ -47,14 +66,12 @@ window.onload = function() {
             }
         }
     }
-    pintarTablero();
+
     document.onkeydown = function(e){
         e.preventDefault();
-        if(e.keyCode > 64 && e.keyCode < 91) {
+        if(e.keyCode > 64 && e.keyCode < 91 || e.keyCode === 192) {
             document.activeElement.value = e.key.toUpperCase();
         }
-    }
-    document.onkeyup = function(e){
         if(e.key != "Enter" && e.key != "Backspace"){
             const input_letra = document.activeElement;
             if(input_letra.nextSibling != null && input_letra.value != ""){
@@ -62,6 +79,7 @@ window.onload = function() {
             }
         }
     }
+
     obtenerValoresFila = function (indice){
         resultado = [CANT_COLUMNAS];
         for(var i = 0; i<CANT_COLUMNAS;i++){
@@ -69,14 +87,15 @@ window.onload = function() {
         }
         return resultado;
     }
+
     guardarRespuesta = function(){
-        respuestas = [6];
+        respuestas = [CANT_FILAS];
         for(var i = 0; i < CANT_FILAS; i++){
             respuestas[i] = obtenerValoresFila(i);
         }
         return respuestas;
     }
-
+    //verica si el renglon es correcto
     revisarLinea = function(lineaRespuesta, indice){
         var ganadora = PALABRA_GANADORA.split("");
         var gano = 0;
@@ -93,6 +112,8 @@ window.onload = function() {
        });
        return gano === ganadora.length;
     }
+
+    //verifica si el renglon tiene todas las letras
     lineaEstaCompleta = function(indice){
         var linea = obtenerValoresFila(indice);
         var completa = true;
@@ -105,6 +126,8 @@ window.onload = function() {
     }
 
     inicio = function() {
+        prepararPalabras();
+        llenarTablero();
         for(let i = 0; i<CANT_FILAS; i++){
             var fieldset = document.getElementById(`row${i}`);
             fieldset.onkeydown = function (event){
@@ -115,7 +138,7 @@ window.onload = function() {
                     if(gano){
                         alert("Ganaste");
                     } else if (i === CANT_FILAS - 1){
-                        alert("Perdiste");
+                        alert("Perdiste, la palabra era: " + PALABRA_GANADORA);
                     }
                     if(document.activeElement.parentElement.nextElementSibling != null && document.activeElement.value != "")
                         document.activeElement.parentElement.nextElementSibling.firstChild.focus();
