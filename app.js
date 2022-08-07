@@ -1,14 +1,17 @@
-var CANT_FILAS = 6;
-var CANT_COLUMNAS = 5;
-var PALABRA_GANADORA = "BIRRA";
+const CANT_FILAS = 6;
+const CANT_COLUMNAS = 5;
+var PALABRA_GANADORA = "";
 
 window.onload = function() {
     const tablero = document.getElementById("tablero");
     llenarTablero = function() {
-        for(let i=0; i<CANT_FILAS; i++){
+        for(var i=0; i<CANT_FILAS; i++){
             var fila = document.createElement("fieldset");
             fila.setAttribute("id",`row${i}`);
             tablero.appendChild(fila);
+            if(i>0){
+                fila.disabled = true;
+            }
             for(let j=0; j<CANT_COLUMNAS; j++){
                 var letra = document.createElement("input");
                 letra.setAttribute("id",`f${i}c${j}`);
@@ -36,11 +39,11 @@ window.onload = function() {
     ]
 
     function prepararPalabras(){
-        setTimeout(5000);
         fetch('https://palabras-aleatorias-public-api.herokuapp.com/random-by-length?length=5')
         .then(response => response.json())
         .then(data => {
             PALABRA_GANADORA = data.body.Word.toUpperCase();
+            console.log(PALABRA_GANADORA);
             if(PALABRA_GANADORA.indexOf("Á") != -1
             || PALABRA_GANADORA.indexOf("É") != -1
             || PALABRA_GANADORA.indexOf("Í") != -1
@@ -136,13 +139,18 @@ window.onload = function() {
                     var gano = revisarLinea(respuestas[i], i);
                     pintarTablero();
                     if(gano){
-                        alert("Ganaste");
+                        document.activeElement.blur();
+                        document.getElementById("modal-gano").style.display = "block";
                     } else if (i === CANT_FILAS - 1){
-                        alert("Perdiste, la palabra era: " + PALABRA_GANADORA);
+                        document.activeElement.blur();
+                        document.getElementById("solucion").innerHTML = "La palabra ganadora era: " + PALABRA_GANADORA;
+                        document.getElementById("modal-perdio").style.display = "block";
                     }
-                    if(document.activeElement.parentElement.nextElementSibling != null && document.activeElement.value != "")
+                    if(document.activeElement.parentElement.nextElementSibling != null)
+                        document.activeElement.parentElement.nextElementSibling.disabled = false;
                         document.activeElement.parentElement.nextElementSibling.firstChild.focus();
-                }
+                        document.activeElement.parentElement.previousElementSibling.disabled = true;
+                    }
                 if(event.key === "Backspace"){
                     document.activeElement.value = "";
                     if(document.activeElement.previousSibling != null){
