@@ -169,4 +169,21 @@ window.onload = function() {
     document.getElementById("cerrar-perdio").onclick = function() {
         document.getElementById("modal-perdio").style.display = "none";
     }
+
+    function iniciarContador(){
+        var cronometro = document.getElementById("cronometro");
+        cronometro.innerHTML = "00:00";
+        var cronometro_segundos = 0;
+        var cronometro_minutos = 0;
+        setInterval(function(){
+            cronometro_segundos++;
+            if(cronometro_segundos === 60){
+                cronometro_segundos = 0;
+                cronometro_minutos++;
+            }
+            cronometro.innerHTML = (cronometro_minutos < 10 ? "0" + cronometro_minutos : cronometro_minutos) + ":" + (cronometro_segundos < 10 ? "0" + cronometro_segundos : cronometro_segundos);
+        },1000);
+    };
+    iniciarContador();
+
 }

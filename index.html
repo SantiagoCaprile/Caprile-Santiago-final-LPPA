@@ -11,23 +11,24 @@
     <title>Wordle</title>
 </head>
 <body>
-    <form id="tablero">
+    <div class="principal">
+        <p id="cronometro">00:00</p>
+        <form id="tablero">
+        </form>
+    </div>
 
-    </form>
     <div id="modal-gano" class="modal">
         <div class="modal-content">
-          <span class="close" id="cerrar-gano">&times;</span>
           <div class="modal-main">
-            <img src="https://www.freeiconspng.com/thumbs/trophy-png/trophy-png-23.png" alt="trofeo">
+            <span class="close" id="cerrar-gano">&times;</span>
             <p class="txt-resultado">GANASTE!</p>
           </div>
         </div>
     </div>
     <div id="modal-perdio" class="modal">
         <div class="modal-content">
-          <span class="close" id="cerrar-perdio">&times;</span>
           <div class="modal-main">
-            <img src="https://www.freeiconspng.com/uploads/red-cross-photo-error-3.png" alt="cruz roja">
+            <span class="close" id="cerrar-perdio">&times;</span>
             <p class="txt-resultado">PERDISTE!</p>
             <p class="txt-resultado" id="solucion"></p>
           </div>
