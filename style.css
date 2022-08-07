@@ -19,6 +19,9 @@ input{
     font-weight: bold;
     color: #171923;
 }
+input:focus{
+    caret-color: transparent;
+}
 
 .verde{
     background-color: #6aaa64;
