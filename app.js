@@ -43,7 +43,6 @@ window.onload = function() {
         .then(response => response.json())
         .then(data => {
             PALABRA_GANADORA = data.body.Word.toUpperCase();
-            console.log(PALABRA_GANADORA);
             if(PALABRA_GANADORA.indexOf("Á") != -1
             || PALABRA_GANADORA.indexOf("É") != -1
             || PALABRA_GANADORA.indexOf("Í") != -1
@@ -162,4 +161,12 @@ window.onload = function() {
     }
 
     inicio();
+
+    document.getElementById("cerrar-gano").onclick = function() {
+        document.getElementById("modal-gano").style.display = "none";
+    }
+
+    document.getElementById("cerrar-perdio").onclick = function() {
+        document.getElementById("modal-perdio").style.display = "none";
+    }
 }
