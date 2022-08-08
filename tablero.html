@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./styles/reset.css">
+    <link rel="stylesheet" href="./styles/tablero.css">
+    <link rel="icon" type="image/x-icon" href="https://assets.stickpng.com/images/6228c92e9da9446176b9f710.png">
+    <script src="tablero.js"></script>
+    <title>Wordle</title>
+</head>
+<body>
+    <div class="principal">
+        <p id="cronometro">00:00</p>
+        <form id="tablero">
+        </form>
+    </div>
+
+    <div id="modal-gano" class="modal">
+        <div class="modal-content">
+          <div class="modal-main">
+            <span class="close" id="cerrar-gano">&times;</span>
+            <p class="txt-resultado">GANASTE!</p>
+          </div>
+        </div>
+    </div>
+    <div id="modal-perdio" class="modal">
+        <div class="modal-content">
+          <div class="modal-main">
+            <span class="close" id="cerrar-perdio">&times;</span>
+            <p class="txt-resultado">PERDISTE!</p>
+            <p class="txt-resultado" id="solucion"></p>
+          </div>
+        </div>
+    </div>
+</body>
+</html>
