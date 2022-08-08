@@ -4,7 +4,6 @@ window.onload = function() {
     const inputNombre = document.getElementById("input-nombre");
 
     btnJugar.onclick = function() {
-        //location.href = "./tablero.html";
         document.getElementsByClassName("inicio")[0].classList.add("oculto");
         document.getElementsByClassName("carga")[0].classList.add("oculto");
         document.getElementsByClassName("form-nombre")[0].classList.remove("oculto");
@@ -19,14 +18,19 @@ window.onload = function() {
     }
 
     document.addEventListener("keydown", function(e){
-        if(e.key == "Enter"){
+        if(e.key == "Enter" && inputNombre.value != ""){
             arrancarJuego();
         }
     });
 
     btnInicio.onclick = function(e) {
         e.preventDefault();
-        arrancarJuego();
+        if(inputNombre.value != ""){
+            arrancarJuego();
+        } else {
+            inputNombre.classList.add("input-error");
+            inputNombre.focus();
+        }
     }
 }
 

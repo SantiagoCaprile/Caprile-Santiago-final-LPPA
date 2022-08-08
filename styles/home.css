@@ -38,7 +38,7 @@ body{
     align-items: center;
 }
 
-#input-nombre{
+.input{
     width: 250px;
     height: 50px;
     margin-top: 20px;
@@ -51,8 +51,12 @@ body{
     text-align: center;
 }
 
-#input-nombre:focus{
+.input:focus{
     outline: none;
+}
+
+.input-error{
+    border-bottom: 2px solid red;
 }
 
 .principal p{
