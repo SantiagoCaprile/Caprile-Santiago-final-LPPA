@@ -160,6 +160,7 @@ window.onload = function() {
                     } else if (i === CANT_FILAS - 1){
                         clearInterval(intervalo);
                         document.activeElement.parentElement.disabled = true;
+                        document.activeElement.blur();
                         document.getElementById("solucion").innerHTML = "La palabra ganadora era: " + PALABRA_GANADORA;
                         document.getElementById("modal-perdio").style.display = "block";
                     }
