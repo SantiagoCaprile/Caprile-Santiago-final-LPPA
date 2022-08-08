@@ -1,6 +1,6 @@
 @font-face {
     font-family: "harry p";
-    src: url("./HARRYP__.TTF");
+    src: url("../fonts/HARRYP__.TTF");
 }
 body{
     background-image: url("https://cdn.wallpapersafari.com/18/87/7t0Azu.jpg");
@@ -108,7 +108,7 @@ input:focus{
     text-decoration: none;
     cursor: pointer;
   }
-  
+
   /* modal ganador */
   #modal-gano .modal-content{
     background-image: url("https://i.pinimg.com/564x/79/a0/d4/79a0d49800176fbdfae1c766bc336649--cups-harry-potter-fandom.jpg");
@@ -118,7 +118,7 @@ input:focus{
   }
   /* modal perdedor */
   #modal-perdio .modal-content{
-    background-image: url("./img/voldemort.png");
+    background-image: url("../img/voldemort.png");
     background-size: cover;
   }
   #modal-perdio .modal-main{
@@ -127,5 +127,6 @@ input:focus{
   }
   #modal-perdio .txt-resultado{
     color: red;
+    font-size: 45px;
     margin-top: 0px;
   }

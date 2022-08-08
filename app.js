@@ -69,6 +69,21 @@ window.onload = function() {
         }
     }
 
+    function iniciarContador(){
+        var cronometro = document.getElementById("cronometro");
+        cronometro.innerHTML = "00:00";
+        var cronometro_segundos = 0;
+        var cronometro_minutos = 0;
+        return setInterval(function(){
+            cronometro_segundos++;
+            if(cronometro_segundos === 60){
+                cronometro_segundos = 0;
+                cronometro_minutos++;
+            }
+            cronometro.innerHTML = (cronometro_minutos < 10 ? "0" + cronometro_minutos : cronometro_minutos) + ":" + (cronometro_segundos < 10 ? "0" + cronometro_segundos : cronometro_segundos);
+        },1000);
+    };
+
     document.onkeydown = function(e){
         e.preventDefault();
         if(e.keyCode > 64 && e.keyCode < 91 || e.keyCode === 192) {
@@ -128,6 +143,7 @@ window.onload = function() {
     }
 
     inicio = function() {
+        var intervalo = iniciarContador();
         prepararPalabras();
         llenarTablero();
         for(let i = 0; i<CANT_FILAS; i++){
@@ -138,10 +154,12 @@ window.onload = function() {
                     var gano = revisarLinea(respuestas[i], i);
                     pintarTablero();
                     if(gano){
+                        clearInterval(intervalo);
                         document.activeElement.blur();
                         document.getElementById("modal-gano").style.display = "block";
                     } else if (i === CANT_FILAS - 1){
-                        document.activeElement.blur();
+                        clearInterval(intervalo);
+                        document.activeElement.parentElement.disabled = true;
                         document.getElementById("solucion").innerHTML = "La palabra ganadora era: " + PALABRA_GANADORA;
                         document.getElementById("modal-perdio").style.display = "block";
                     }
@@ -169,21 +187,5 @@ window.onload = function() {
     document.getElementById("cerrar-perdio").onclick = function() {
         document.getElementById("modal-perdio").style.display = "none";
     }
-
-    function iniciarContador(){
-        var cronometro = document.getElementById("cronometro");
-        cronometro.innerHTML = "00:00";
-        var cronometro_segundos = 0;
-        var cronometro_minutos = 0;
-        setInterval(function(){
-            cronometro_segundos++;
-            if(cronometro_segundos === 60){
-                cronometro_segundos = 0;
-                cronometro_minutos++;
-            }
-            cronometro.innerHTML = (cronometro_minutos < 10 ? "0" + cronometro_minutos : cronometro_minutos) + ":" + (cronometro_segundos < 10 ? "0" + cronometro_segundos : cronometro_segundos);
-        },1000);
-    };
-    iniciarContador();
 
 }
