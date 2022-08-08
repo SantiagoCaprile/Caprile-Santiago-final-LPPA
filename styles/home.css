@@ -1,0 +1,70 @@
+@font-face {
+    font-family: "harry p";
+    src: url("../fonts/HARRYP__.TTF");
+}
+body{
+    background-image: url("https://cdn.wallpapersafari.com/18/87/7t0Azu.jpg");
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "harry p";
+}
+
+.principal{
+    height: 850px;
+    width: 700px;
+    border-radius: 15px;
+    background-image: url("../img/papiro.png");
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.centro{
+    height: 700px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.inicio, .carga{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.principal p{
+    font-size: 45px;
+    font-family: "harry p";
+    font-weight: bold;
+    color: #171923;
+}
+
+.form-nombre{
+    display: none;
+}
+
+#btn-jugar, #btn-cargar{
+    width: 250px;
+    height: 70px;
+    border-radius: 10px;
+    background-color: gold;
+    border: 1px solid orange;
+    box-shadow: black 0px 0px 10px;
+    color: rgb(0, 0, 0);
+    text-shadow: white 0px 0px 10px;
+    font-family: 'harry p';
+    font-size: 40px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+#btn-jugar:hover, #btn-cargar:hover{
+    background-color: orange;
+    transform: scale(1.1);
+}

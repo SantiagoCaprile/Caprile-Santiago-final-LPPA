@@ -158,17 +158,18 @@ window.onload = function() {
                         document.activeElement.parentElement.disabled = true;
                         document.getElementById("modal-gano").style.display = "block";
                     } else if (i === CANT_FILAS - 1){
-                        clearInterval(intervalo);
+                        clearInterval(intervalo);;
                         document.activeElement.parentElement.disabled = true;
                         document.activeElement.blur();
                         document.getElementById("solucion").innerHTML = "La palabra ganadora era: " + PALABRA_GANADORA;
                         document.getElementById("modal-perdio").style.display = "block";
                     }
-                    if(document.activeElement.parentElement.nextElementSibling != null)
+                    if(document.activeElement.parentElement.nextElementSibling != null){
                         document.activeElement.parentElement.nextElementSibling.disabled = false;
                         document.activeElement.parentElement.nextElementSibling.firstChild.focus();
                         document.activeElement.parentElement.previousElementSibling.disabled = true;
                     }
+                }
                 if(event.key === "Backspace"){
                     document.activeElement.value = "";
                     if(document.activeElement.previousSibling != null){
