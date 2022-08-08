@@ -155,14 +155,16 @@ window.onload = function() {
                     pintarTablero();
                     if(gano){
                         clearInterval(intervalo);
+                        document.getElementById("btn-guardar").classList.add("oculto");
                         document.activeElement.parentElement.disabled = true;
-                        document.getElementById("modal-gano").style.display = "block";
+                        document.getElementById("modal-gano").classList.remove("oculto");
                     } else if (i === CANT_FILAS - 1){
-                        clearInterval(intervalo);;
+                        clearInterval(intervalo);
+                        document.getElementById("btn-guardar").classList.add("oculto");
                         document.activeElement.parentElement.disabled = true;
                         document.activeElement.blur();
                         document.getElementById("solucion").innerHTML = "La palabra ganadora era: " + PALABRA_GANADORA;
-                        document.getElementById("modal-perdio").style.display = "block";
+                        document.getElementById("modal-perdio").classList.remove("oculto");
                     }
                     if(document.activeElement.parentElement.nextElementSibling != null){
                         document.activeElement.parentElement.nextElementSibling.disabled = false;

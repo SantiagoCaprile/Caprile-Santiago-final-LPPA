@@ -58,9 +58,28 @@ input:focus{
     color: white;
 }
 
+#btn-guardar{
+  width: 230px;
+  height: 70px;
+  border-radius: 10px;
+  background-color: orange;
+  border: 1px solid orange;
+  box-shadow: black 0px 0px 10px;
+  color: rgb(0, 0, 0);
+  text-shadow: white 0px 0px 10px;
+  font-family: 'harry p';
+  font-size: 40px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+#btn-guardar:hover{
+  background-color: #ffc107;
+  color: black;
+}
+
 /* The Modal (background) */
 .modal {
-    display: none;
     position: fixed;
     z-index: 1;
     left: 0;
@@ -129,4 +148,8 @@ input:focus{
     color: red;
     font-size: 45px;
     margin-top: 0px;
+  }
+
+  .oculto{
+    display: none;
   }
