@@ -1,6 +1,7 @@
 window.onload = function() {
     const btnJugar = document.getElementById("btn-jugar");
     const btnInicio = document.getElementById("btn-inicio");
+    const btnCargar = document.getElementById("btn-cargar");
     const inputNombre = document.getElementById("input-nombre");
 
     btnJugar.onclick = function() {
@@ -14,6 +15,7 @@ window.onload = function() {
     arrancarJuego = function(){
         var nombre = inputNombre.value;
         localStorage.setItem("nombre", nombre);
+        localStorage.removeItem("partida");
         location.href = "./tablero.html";
     }
 
@@ -31,6 +33,12 @@ window.onload = function() {
             inputNombre.classList.add("input-error");
             inputNombre.focus();
         }
+    }
+
+    btnCargar.onclick = function(e) {
+        e.preventDefault();
+        localStorage.setItem("partida", "0");
+        location.href = "./tablero.html";
     }
 }
 

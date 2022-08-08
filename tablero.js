@@ -5,6 +5,7 @@ var PALABRA_GANADORA = "";
 window.onload = function() {
     const tablero = document.getElementById("tablero");
     const btnGuardar = document.getElementById("btn-guardar");
+
     llenarTablero = function() {
         for(var i=0; i<CANT_FILAS; i++){
             var fila = document.createElement("fieldset");
@@ -143,12 +144,8 @@ window.onload = function() {
         return completa;
     }
 
-    inicio = function() {
-        var intervalo = iniciarContador();
-        prepararPalabras();
-        llenarTablero();
-        for(let i = 0; i<CANT_FILAS; i++){
-            var fieldset = document.getElementById(`row${i}`);
+    logicaJuego = function(i,intervalo) {
+        var fieldset = document.getElementById(`row${i}`);
             fieldset.onkeydown = function (event){
                 if(event.key === "Enter" && lineaEstaCompleta(i)){
                     var respuestas = guardarRespuesta();
@@ -180,10 +177,18 @@ window.onload = function() {
                     }
                 }
             }
+    }
+
+    inicio = function() {
+        var intervalo = iniciarContador();
+        prepararPalabras();
+        llenarTablero();
+        for(let i = 0; i<CANT_FILAS; i++){
+            logicaJuego(i,intervalo);
         }
     }
 
-    inicio();
+    //inicio();
 
     document.getElementById("cerrar-gano").onclick = function() {
         document.getElementById("modal-gano").classList.add("oculto");
@@ -193,15 +198,73 @@ window.onload = function() {
         document.getElementById("modal-perdio").classList.add("oculto");
     }
 
+    //retorna el id del primer input vacio
+    obtenerPrimerVacio = function(){
+        var inputs = document.getElementsByTagName("input");
+        for(var i = 0; i < inputs.length; i++){
+            if(inputs[i].value === ""){
+                return inputs[i];
+            }
+        }
+        return inputs[0];
+    }
+
+    cargarTablero = function(respuestas) {
+        for(var i=0; i<CANT_FILAS; i++){
+            var fila = document.createElement("fieldset");
+            fila.setAttribute("id",`row${i}`);
+            tablero.appendChild(fila);
+            fila.disabled = true;
+            for(let j=0; j<CANT_COLUMNAS; j++){
+                var letra = document.createElement("input");
+                letra.setAttribute("id",`f${i}c${j}`);
+                letra.setAttribute("maxlength","1");
+                letra.value = respuestas[i][j];
+                fila.appendChild(letra);
+            }
+        }
+        var cursor = obtenerPrimerVacio();
+        cursor.parentElement.disabled = false;
+        cursor.focus();
+        var fila = cursor.id[1];
+        if(fila != 0){
+            for(var i = 0; i < fila; i++){
+                revisarLinea(respuestas[i], i);
+            }
+        }
+        pintarTablero();
+        reanudarJuego(fila);
+    }
+
+    reanudarJuego = function(fila) {
+        var intervalo = iniciarContador();
+        for(let i = fila; i<CANT_FILAS; i++){
+            logicaJuego(i,intervalo);
+        }
+    }
+
+    //carga la partida guardada en el localStorage
+    function cargarPartida(){
+        var partidas = JSON.parse(localStorage.getItem("partidas"));
+        var partida = partidas[localStorage.getItem("partida")];
+        if(partida != null){
+            PALABRA_GANADORA = partida.PALABRA_GANADORA;
+            //iniciar contador con los valores guardados
+            cargarTablero(partida.respuestas);
+            //pintar tablero
+        }
+    }
+    //cargarPartida();
+
     function guardarPartida(){
-        var nombre = "santi";
+        var nombre = localStorage.getItem("nombre");
         var cronometro = document.getElementById("cronometro").innerHTML;
         var respuestas = guardarRespuesta();
         var partida = {
             nombre: nombre,
             cronometro: cronometro,
             respuestas: respuestas,
-            PALABRA_GANADORA: PALABRA_GANADORA
+            PALABRA_GANADORA: PALABRA_GANADORA,
         }
         var partidas = JSON.parse(localStorage.getItem("partidas"));
         if(partidas == null){
@@ -218,6 +281,13 @@ window.onload = function() {
         setTimeout(function(){
             window.location.href = "index.html";
         } ,1000);
+    }
+
+    var partidaExistente = localStorage.getItem("partida");
+    if(partidaExistente != null || partidaExistente != undefined){
+        cargarPartida();
+    } else {
+        inicio();
     }
 
 }
