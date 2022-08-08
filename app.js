@@ -155,7 +155,7 @@ window.onload = function() {
                     pintarTablero();
                     if(gano){
                         clearInterval(intervalo);
-                        document.activeElement.blur();
+                        document.activeElement.parentElement.disabled = true;
                         document.getElementById("modal-gano").style.display = "block";
                     } else if (i === CANT_FILAS - 1){
                         clearInterval(intervalo);
