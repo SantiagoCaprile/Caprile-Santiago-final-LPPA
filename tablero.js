@@ -4,6 +4,7 @@ var PALABRA_GANADORA = "";
 
 window.onload = function() {
     const tablero = document.getElementById("tablero");
+    const btnGuardar = document.getElementById("btn-guardar");
     llenarTablero = function() {
         for(var i=0; i<CANT_FILAS; i++){
             var fila = document.createElement("fieldset");
@@ -185,11 +186,38 @@ window.onload = function() {
     inicio();
 
     document.getElementById("cerrar-gano").onclick = function() {
-        document.getElementById("modal-gano").style.display = "none";
+        document.getElementById("modal-gano").classList.add("oculto");
     }
 
     document.getElementById("cerrar-perdio").onclick = function() {
-        document.getElementById("modal-perdio").style.display = "none";
+        document.getElementById("modal-perdio").classList.add("oculto");
+    }
+
+    function guardarPartida(){
+        var nombre = "santi";
+        var cronometro = document.getElementById("cronometro").innerHTML;
+        var respuestas = guardarRespuesta();
+        var partida = {
+            nombre: nombre,
+            cronometro: cronometro,
+            respuestas: respuestas,
+            PALABRA_GANADORA: PALABRA_GANADORA
+        }
+        var partidas = JSON.parse(localStorage.getItem("partidas"));
+        if(partidas == null){
+            partidas = [];
+        }
+        partidas.push(partida);
+        localStorage.setItem("partidas", JSON.stringify(partidas));
+    }
+
+    btnGuardar.onclick = function(e) {
+        e.preventDefault();
+        guardarPartida();
+        btnGuardar.classList.add("oculto");
+        setTimeout(function(){
+            window.location.href = "index.html";
+        } ,1000);
     }
 
 }

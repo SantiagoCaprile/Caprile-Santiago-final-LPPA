@@ -31,11 +31,28 @@ body{
     align-items: center;
 }
 
-.inicio, .carga{
+.inicio, .carga, .form-nombre{
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+#input-nombre{
+    width: 250px;
+    height: 50px;
+    margin-top: 20px;
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid #000;
+    font-size: 40px;
+    font-family: "harry p";
+    letter-spacing: 2px;
+    text-align: center;
+}
+
+#input-nombre:focus{
+    outline: none;
 }
 
 .principal p{
@@ -45,11 +62,7 @@ body{
     color: #171923;
 }
 
-.form-nombre{
-    display: none;
-}
-
-#btn-jugar, #btn-cargar{
+.botones{
     width: 250px;
     height: 70px;
     border-radius: 10px;
@@ -64,7 +77,11 @@ body{
     margin-top: 20px;
 }
 
-#btn-jugar:hover, #btn-cargar:hover{
+.botones:hover{
     background-color: orange;
     transform: scale(1.1);
+}
+
+.oculto{
+    display: none;
 }
