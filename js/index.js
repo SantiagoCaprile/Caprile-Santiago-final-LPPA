@@ -2,6 +2,7 @@ window.onload = function() {
     const btnJugar = document.getElementById("btn-jugar");
     const btnInicio = document.getElementById("btn-inicio");
     const btnCargar = document.getElementById("btn-cargar");
+    const btnContacto = document.getElementById("btn-contacto");
     const inputNombre = document.getElementById("input-nombre");
     localStorage.setItem("nombre", "");
     localStorage.setItem("partida", "");
@@ -39,6 +40,11 @@ window.onload = function() {
     btnCargar.onclick = function(e) {
         e.preventDefault();
         location.href = "./partidas.html";
+    }
+
+    btnContacto.onclick = function(e) {
+        e.preventDefault();
+        location.href = "./contacto.html";
     }
 }
 
