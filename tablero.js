@@ -82,7 +82,8 @@ window.onload = function() {
                 cronometro_segundos = 0;
                 cronometro_minutos++;
             }
-            cronometro.innerHTML = (cronometro_minutos < 10 ? "0" + cronometro_minutos : cronometro_minutos) + ":" + (cronometro_segundos < 10 ? "0" + cronometro_segundos : cronometro_segundos);
+            cronometro.innerHTML = (cronometro_minutos < 10 ? "0" + cronometro_minutos : cronometro_minutos) 
+            + ":" + (cronometro_segundos < 10 ? "0" + cronometro_segundos : cronometro_segundos);
         },1000);
     };
 
