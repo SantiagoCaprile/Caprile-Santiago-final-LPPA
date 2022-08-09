@@ -1,0 +1,113 @@
+@font-face {
+    font-family: "harry p";
+    src: url("../fonts/HARRYP__.TTF");
+}
+body{
+    background-image: url("https://cdn.wallpapersafari.com/18/87/7t0Azu.jpg");
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "harry p";
+}
+
+p{
+    font-size: 80px;
+    font-family: "harry p";
+    letter-spacing: 2px;
+    color: gold;
+    text-shadow: #000 0px 0px 10px;
+    text-align: center;
+}
+
+input{
+    width: 250px;
+    height: 50px;
+    margin-top: 20px;
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid #000;
+    font-size: 40px;
+    font-family: "harry p";
+    letter-spacing: 2px;
+    text-align: center;
+}
+
+input:focus{
+    outline: none;
+}
+
+.input-error{
+    border-bottom: 2px solid red;
+}
+
+textarea{
+    height: 150px;
+    margin-top: 20px;
+    background-color: transparent;
+    border: 1px solid grey;
+    font-size: 30px;
+    resize: none;
+    font-family: "harry p";
+    letter-spacing: 2px;
+}
+
+.principal{
+    height: 850px;
+    width: 700px;
+    border-radius: 15px;
+    background-image: url("../img/papiro.png");
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.centro{
+    height: 700px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.botones{
+    width: 250px;
+    height: 50px;
+    margin-top: 15px;
+    border-radius: 10px;
+    background-color: gold;
+    border: 1px solid orange;
+    box-shadow: black 0px 0px 10px;
+    color: rgb(0, 0, 0);
+    text-shadow: white 0px 0px 10px;
+    font-family: 'harry p';
+    font-size: 40px;
+    cursor: pointer;
+}
+
+.botones:hover{
+    background-color: orange;
+    transform: scale(1.1);
+}
+
+.error{
+    color: red;
+    font-size: 15px;
+    font-family: "times new roman";
+    text-shadow: none;
+    text-align: center;
+}
+
+.oculto{
+    display: none;
+}
