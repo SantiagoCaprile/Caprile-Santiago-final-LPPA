@@ -3,6 +3,7 @@ window.onload = function() {
     const email = document.getElementById("email");
     const mensaje = document.getElementById("mensaje");
     const btnEnviar = document.getElementById("btn-enviar");
+    const btnVolver = document.getElementById("btn-volver");
 
 
     nombreValido = function() {
@@ -60,5 +61,10 @@ window.onload = function() {
         if(nombreValido() && emailValido() && mensajeValido()){
            window.location.href = `mailto:santiagocaprile@hotmail.com?body=` + mensaje.value;
         }
+    }
+
+    btnVolver.onclick = function(e) {
+        e.preventDefault();
+        window.location.href = "./index.html";
     }
 }
