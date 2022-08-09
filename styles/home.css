@@ -31,7 +31,7 @@ body{
     align-items: center;
 }
 
-.inicio, .carga, .form-nombre{
+.inicio, .contacto, .form-nombre{
     display: flex;
     flex-direction: column;
     justify-content: center;

@@ -8,7 +8,7 @@ window.onload = function() {
 
     btnJugar.onclick = function() {
         document.getElementsByClassName("inicio")[0].classList.add("oculto");
-        document.getElementsByClassName("carga")[0].classList.add("oculto");
+        document.getElementsByClassName("contacto")[0].classList.add("oculto");
         document.getElementsByClassName("form-nombre")[0].classList.remove("oculto");
         inputNombre.focus();
     }
