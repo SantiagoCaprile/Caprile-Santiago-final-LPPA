@@ -5,6 +5,10 @@ var PALABRA_GANADORA = "";
 window.onload = function() {
     const tablero = document.getElementById("tablero");
     const btnGuardar = document.getElementById("btn-guardar");
+    var cronometro = document.getElementById("cronometro");
+    cronometro.innerHTML = "00:00";
+    var cronometro_segundos = 0;
+    var cronometro_minutos = 0;
 
     llenarTablero = function() {
         for(var i=0; i<CANT_FILAS; i++){
@@ -72,10 +76,6 @@ window.onload = function() {
     }
 
     function iniciarContador(){
-        var cronometro = document.getElementById("cronometro");
-        cronometro.innerHTML = "00:00";
-        var cronometro_segundos = 0;
-        var cronometro_minutos = 0;
         return setInterval(function(){
             cronometro_segundos++;
             if(cronometro_segundos === 60){
@@ -85,6 +85,19 @@ window.onload = function() {
             cronometro.innerHTML = (cronometro_minutos < 10 ? "0" + cronometro_minutos : cronometro_minutos) + ":" + (cronometro_segundos < 10 ? "0" + cronometro_segundos : cronometro_segundos);
         },1000);
     };
+
+    function reanudarContador(){
+        var cronometro = document.getElementById("cronometro");
+
+        return setInterval(function(){
+            cronometro_segundos++;
+            if(cronometro_segundos === 60){
+                cronometro_segundos = 0;
+                cronometro_minutos++;
+            }
+            cronometro.innerHTML = (cronometro_minutos < 10 ? "0" + cronometro_minutos : cronometro_minutos) + ":" + (cronometro_segundos < 10 ? "0" + cronometro_segundos : cronometro_segundos);
+        },1000);
+    }
 
     document.onkeydown = function(e){
         e.preventDefault();
@@ -181,14 +194,15 @@ window.onload = function() {
 
     inicio = function() {
         var intervalo = iniciarContador();
+        if(localStorage.getItem("partidas") == []){
+            localStorage.setItem("partidas",[]);
+        }
         prepararPalabras();
         llenarTablero();
         for(let i = 0; i<CANT_FILAS; i++){
             logicaJuego(i,intervalo);
         }
     }
-
-    //inicio();
 
     document.getElementById("cerrar-gano").onclick = function() {
         document.getElementById("modal-gano").classList.add("oculto");
@@ -249,22 +263,24 @@ window.onload = function() {
         var partida = partidas[localStorage.getItem("partida")];
         if(partida != null){
             PALABRA_GANADORA = partida.PALABRA_GANADORA;
-            //iniciar contador con los valores guardados
+            var tiempo = new Date(partida.tiempo);
+            cronometro_segundos = tiempo.getSeconds();
+            cronometro_minutos = tiempo.getMinutes();
             cargarTablero(partida.respuestas);
-            //pintar tablero
         }
     }
-    //cargarPartida();
 
     function guardarPartida(){
         var nombre = localStorage.getItem("nombre");
-        var cronometro = document.getElementById("cronometro").innerHTML;
         var respuestas = guardarRespuesta();
+        var crono = new Date();
+        crono.setSeconds(cronometro_segundos);
+        crono.setMinutes(cronometro_minutos);
         var partida = {
             nombre: nombre,
-            cronometro: cronometro,
             respuestas: respuestas,
             PALABRA_GANADORA: PALABRA_GANADORA,
+            tiempo: crono
         }
         var partidas = JSON.parse(localStorage.getItem("partidas"));
         if(partidas == null){
@@ -283,10 +299,17 @@ window.onload = function() {
         } ,1000);
     }
 
+    if(partidaExistente == "" || localStorage.getItem("nombre") == ""){
+        location.href = "index.html";
+    }
+
     var partidaExistente = localStorage.getItem("partida");
-    if(partidaExistente != null || partidaExistente != undefined){
+    if(partidaExistente != "" && localStorage.getItem("nombre") != ""){
+        console.log("partida existente");
+        console.log(partidaExistente);
         cargarPartida();
     } else {
+        console.log("partida nueva");
         inicio();
     }
 

@@ -3,6 +3,8 @@ window.onload = function() {
     const btnInicio = document.getElementById("btn-inicio");
     const btnCargar = document.getElementById("btn-cargar");
     const inputNombre = document.getElementById("input-nombre");
+    localStorage.setItem("nombre", "");
+    localStorage.setItem("partida", "");
 
     btnJugar.onclick = function() {
         document.getElementsByClassName("inicio")[0].classList.add("oculto");
@@ -15,7 +17,6 @@ window.onload = function() {
     arrancarJuego = function(){
         var nombre = inputNombre.value;
         localStorage.setItem("nombre", nombre);
-        localStorage.removeItem("partida");
         location.href = "./tablero.html";
     }
 
@@ -37,7 +38,7 @@ window.onload = function() {
 
     btnCargar.onclick = function(e) {
         e.preventDefault();
-        localStorage.setItem("partida", "0");
+        //localStorage.setItem("partida", "1");
         location.href = "./tablero.html";
     }
 }
