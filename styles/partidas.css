@@ -1,0 +1,56 @@
+@font-face {
+    font-family: "harry p";
+    src: url("../fonts/HARRYP__.TTF");
+}
+body{
+    background-image: url("https://cdn.wallpapersafari.com/18/87/7t0Azu.jpg");
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "harry p";
+}
+
+.principal{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+h1{
+    font-size: 70px;
+    font-family: "harry p";
+    letter-spacing: 2px;
+    text-align: center;
+    color: gold;
+    margin-bottom: 15px;
+    text-shadow: darkturquoise 0px 0px 5px;
+}
+#tabla-partidas{
+    background-color: rgba(230, 230, 230, 0.5);
+    width: 1000px;
+    font-size: 35px;
+}
+
+thead{
+    background-color: rgba(0, 0, 0,0.8);
+    color: gold;
+}
+td, th{
+    justify-content: center;
+    border: 1px solid #000;
+    text-align: center;
+}
+.botones-cargar{
+    margin: 5px;
+    background-color: rgba(255, 215, 0, 0.5);
+    border: 2px solid gold;
+    border-radius: 50%;
+    color: black;
+    font-size: 35px;
+    cursor: pointer;
+}
+.botones-cargar:hover{
+    background-color: gold;
+    transform: scale(1.1);
+}
