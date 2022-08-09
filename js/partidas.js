@@ -20,14 +20,14 @@ window.onload = function() {
             fila.appendChild(celdaTiempo);
             fila.appendChild(celdaFlecha);
             tabla.appendChild(fila);
+            document.getElementById(i).onclick = function() {
+                localStorage.setItem("partida", this.id);
+                localStorage.setItem("nombre", partidas[this.id].nombre);
+                location.href = "./tablero.html";
+            }
         }
     } else {
         tabla.innerHTML = "<td>No hay partidas guardadas</td>";
     }
-
-    //rellena la tabla con las partidas guardadas en el localStorage
-
-
-
 
 }
