@@ -12,8 +12,8 @@ window.onload = function() {
             tiempo = new Date(partidas[i].tiempo);
             console.log(tiempo.getSeconds());
             var celdaTiempo = document.createElement("td");
-            celdaTiempo.innerHTML = (tiempo.getMinutes()<9? "0" + tiempo.getMinutes() : tiempo.getMinutes()) 
-            + ":" + (tiempo.getSeconds()<9? "0" + tiempo.getSeconds() : tiempo.getSeconds());
+            celdaTiempo.innerHTML = (tiempo.getMinutes()<10? "0" + tiempo.getMinutes() : tiempo.getMinutes()) 
+            + ":" + (tiempo.getSeconds()<10? "0" + tiempo.getSeconds() : tiempo.getSeconds());
             var celdaFlecha = document.createElement("td");
             celdaFlecha.innerHTML = `<button class="botones-cargar" id="${i}">&rightarrowtail;</button>`;
             fila.appendChild(celdaNombre);
@@ -21,6 +21,8 @@ window.onload = function() {
             fila.appendChild(celdaFlecha);
             tabla.appendChild(fila);
         }
+    } else {
+        tabla.innerHTML = "<td>No hay partidas guardadas</td>";
     }
 
     //rellena la tabla con las partidas guardadas en el localStorage
