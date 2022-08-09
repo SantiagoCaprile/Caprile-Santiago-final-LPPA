@@ -7,7 +7,7 @@ body{
     background-size: cover;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
     font-family: "harry p";
 }
 
@@ -15,6 +15,7 @@ body{
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-top: 70px;
 }
 
 h1{
@@ -26,6 +27,7 @@ h1{
     margin-bottom: 15px;
     text-shadow: darkturquoise 0px 0px 5px;
 }
+
 #tabla-partidas{
     background-color: rgba(230, 230, 230, 0.5);
     width: 1000px;
@@ -36,11 +38,13 @@ thead{
     background-color: rgba(0, 0, 0,0.8);
     color: gold;
 }
+
 td, th{
     justify-content: center;
     border: 1px solid #000;
     text-align: center;
 }
+
 .botones-cargar{
     margin: 5px;
     background-color: rgba(255, 215, 0, 0.5);
@@ -50,6 +54,7 @@ td, th{
     font-size: 35px;
     cursor: pointer;
 }
+
 .botones-cargar:hover{
     background-color: gold;
     transform: scale(1.1);
