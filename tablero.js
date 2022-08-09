@@ -87,19 +87,6 @@ window.onload = function() {
         },1000);
     };
 
-    function reanudarContador(){
-        var cronometro = document.getElementById("cronometro");
-
-        return setInterval(function(){
-            cronometro_segundos++;
-            if(cronometro_segundos === 60){
-                cronometro_segundos = 0;
-                cronometro_minutos++;
-            }
-            cronometro.innerHTML = (cronometro_minutos < 10 ? "0" + cronometro_minutos : cronometro_minutos) + ":" + (cronometro_segundos < 10 ? "0" + cronometro_segundos : cronometro_segundos);
-        },1000);
-    }
-
     document.onkeydown = function(e){
         e.preventDefault();
         if(e.keyCode > 64 && e.keyCode < 91 || e.keyCode === 192) {
