@@ -38,8 +38,7 @@ window.onload = function() {
 
     btnCargar.onclick = function(e) {
         e.preventDefault();
-        //localStorage.setItem("partida", "1");
-        location.href = "./tablero.html";
+        location.href = "./partidas.html";
     }
 }
 
