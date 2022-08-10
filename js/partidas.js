@@ -1,5 +1,6 @@
 window.onload = function() {
     const tabla = document.getElementById("tabla-partidas");
+    const btnVolver = document.getElementById("btn-volver");
     var partidas = localStorage.getItem("partidas");
 
     if (partidas) {
@@ -28,6 +29,11 @@ window.onload = function() {
         }
     } else {
         tabla.innerHTML = "<td>No hay partidas guardadas</td>";
+    }
+
+    btnVolver.onclick = function(e) {
+        e.preventDefault();
+        location.href = "./index.html";
     }
 
 }

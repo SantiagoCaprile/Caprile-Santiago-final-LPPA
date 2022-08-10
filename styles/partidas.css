@@ -24,7 +24,6 @@ h1{
     letter-spacing: 2px;
     text-align: center;
     color: gold;
-    margin-bottom: 15px;
     text-shadow: darkturquoise 0px 0px 5px;
 }
 
@@ -58,4 +57,32 @@ td, th{
 .botones-cargar:hover{
     background-color: gold;
     transform: scale(1.1);
+}
+
+.botones{
+    width: 100px;
+    height: 40px;
+    border-radius: 10px;
+    background-color: gold;
+    border: 1px solid orange;
+    box-shadow: black 0px 0px 10px;
+    color: rgb(0, 0, 0);
+    text-shadow: white 0px 0px 10px;
+    font-family: 'harry p';
+    font-size: 30px;
+    cursor: pointer;
+}
+
+.botones:hover{
+    background-color: orange;
+    transform: scale(1.1);
+}
+
+.top-div{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    vertical-align: middle;
 }
