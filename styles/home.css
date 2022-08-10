@@ -116,6 +116,7 @@ body{
         width: 250px;
         height: 50px;
         color: gold;
+        border-bottom: grey 1px solid;
     }
 
     .principal p{

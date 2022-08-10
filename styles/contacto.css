@@ -155,6 +155,14 @@ form{
         color: white;
     }
 
+    input{
+        border-bottom: grey 1px solid;
+    }
+
+    textarea{
+        width: 100%;
+    }
+
     #github{
         font-size: 30px;
         color: gold;
