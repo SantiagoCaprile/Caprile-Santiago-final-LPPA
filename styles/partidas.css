@@ -38,6 +38,10 @@ thead{
     color: gold;
 }
 
+th{
+    padding: 10px;
+}
+
 td, th{
     justify-content: center;
     border: 1px solid #000;
@@ -85,4 +89,27 @@ td, th{
     justify-content: space-between;
     align-items: center;
     vertical-align: middle;
+}
+
+@media (max-width: 768px){
+    .principal{
+        width: 100%;
+    }
+    h1{
+        font-size: 50px;
+    }
+    #tabla-partidas{
+        width: 80%
+    }
+    td, th{
+        font-size: 30px;
+    }
+    .top-div{
+        width: 80%;
+        justify-content: space-between;
+        margin-bottom: 20px;
+    }
+    h1{
+        text-align: left;
+    }
 }

@@ -120,3 +120,49 @@ form{
 .oculto{
     display: none;
 }
+
+@media (max-width: 768px){
+    .principal{
+        background-image: none;
+        height: 100%;
+        width: 100%;
+        justify-content: center;
+    }
+
+    .form-nombre{
+        height: 100%;
+    }
+
+    .input{
+        width: 250px;
+        height: 50px;
+        color: gold;
+    }
+
+    .principal p{
+        font-size: 75px;
+        color: black;
+        text-shadow: yellow 0px 0px 20px;
+        background-color: rgba(252, 202, 4, 0.02);
+        border-radius: 20px;
+    }
+
+    form{
+        margin: 65px;
+    }
+
+    input, textarea{
+        color: white;
+    }
+
+    #github{
+        font-size: 30px;
+        color: gold;
+        text-shadow: rgb(56, 56, 56) 0px 0px 20px;
+    }
+
+    .botones{
+        width: 200px;
+        height: 70px;
+    }
+}
