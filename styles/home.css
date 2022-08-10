@@ -95,3 +95,39 @@ body{
 .oculto{
     display: none;
 }
+
+@media (max-width: 768px){
+    .principal{
+        height: 480px;
+        width: 400px;
+        background-image: none;
+        justify-content: space-between;
+    }
+
+    .centro{
+        justify-content: space-between;
+    }
+
+    .form-nombre{
+        height: 100%;
+    }
+
+    .input{
+        width: 250px;
+        height: 50px;
+        color: gold;
+    }
+
+    .principal p{
+        font-size: 35px;
+        color: black;
+        text-shadow: yellow 0px 0px 20px;
+        background-color: rgba(252, 202, 4, 0.02);
+        border-radius: 20px;
+    }
+
+    .botones{
+        width: 200px;
+        height: 70px;
+    }
+}

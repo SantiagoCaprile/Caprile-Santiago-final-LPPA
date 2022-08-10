@@ -160,3 +160,26 @@ input:focus{
   .oculto{
     display: none;
   }
+
+  @media (max-width: 768px){
+    .modal-content{
+      width: 340px;
+      height: 530px;
+    }
+    #modal-gano .modal-content{
+      background-size: contain;
+      height: 400px
+    }
+    #modal-perdio .modal-content{
+      margin-bottom: 20px;
+    }
+    .txt-resultado{
+      font-size: 60px;
+      text-align: center;
+    }
+    .close{
+      font-size: 35px;
+      font-weight: bold;
+      color: red;
+    }
+  }
