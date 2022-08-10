@@ -149,7 +149,7 @@ window.onload = function() {
     logicaJuego = function(i,intervalo) {
         var fieldset = document.getElementById(`row${i}`);
             fieldset.onkeydown = function (event){
-                if(event.key === "Enter" && lineaEstaCompleta(i)){
+                if(event.key === "Enter" && lineaEstaCompleta(i) && PALABRA_GANADORA.length != 0){
                     var respuestas = guardarRespuesta();
                     var gano = revisarLinea(respuestas[i], i);
                     pintarTablero();
