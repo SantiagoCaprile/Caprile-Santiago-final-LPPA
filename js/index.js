@@ -2,6 +2,7 @@ window.onload = function() {
     const btnJugar = document.getElementById("btn-jugar");
     const btnInicio = document.getElementById("btn-inicio");
     const btnCargar = document.getElementById("btn-cargar");
+    const btnVolver = document.getElementById("btn-volver");
     const btnContacto = document.getElementById("btn-contacto");
     const inputNombre = document.getElementById("input-nombre");
     localStorage.setItem("nombre", "");
@@ -45,6 +46,13 @@ window.onload = function() {
     btnContacto.onclick = function(e) {
         e.preventDefault();
         location.href = "./contacto.html";
+    }
+
+    btnVolver.onclick = function(e) {
+        e.preventDefault();
+        document.getElementsByClassName("inicio")[0].classList.remove("oculto");
+        document.getElementsByClassName("contacto")[0].classList.remove("oculto");
+        document.getElementsByClassName("form-nombre")[0].classList.add("oculto");
     }
 }
 

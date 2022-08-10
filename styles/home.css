@@ -86,6 +86,12 @@ body{
     transform: scale(1.1);
 }
 
+#btn-volver{
+    width: 125px;
+    height: 50px;
+    font-size: 30px;
+}
+
 .oculto{
     display: none;
 }
