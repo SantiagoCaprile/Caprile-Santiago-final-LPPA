@@ -83,15 +83,15 @@ window.onload = function() {
                 cronometro_segundos = 0;
                 cronometro_minutos++;
             }
-            cronometro.innerHTML = (cronometro_minutos < 10 ? "0" + cronometro_minutos : cronometro_minutos) 
+            cronometro.innerHTML = (cronometro_minutos < 10 ? "0" + cronometro_minutos : cronometro_minutos)
             + ":" + (cronometro_segundos < 10 ? "0" + cronometro_segundos : cronometro_segundos);
         },1000);
     };
 
     document.onkeydown = function(e){
         e.preventDefault();
-        if(e.key >= "a" && e.key <= "z" || e.key === "ñ" || e.key === "Ñ") {
-            document.activeElement.value = e.key.toUpperCase();
+        if(e.keyCode > 64 && e.keyCode <= 91 || e.key === "ñ" || e.key === "Ñ") {
+            document.activeElement.value = e.key.valueOf().toUpperCase();
             const input_letra = document.activeElement;
             if(input_letra.nextSibling != null && input_letra.value != ""){
                 input_letra.nextSibling.focus();
