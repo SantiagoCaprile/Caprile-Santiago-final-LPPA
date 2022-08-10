@@ -162,6 +162,9 @@ input:focus{
   }
 
   @media (max-width: 768px){
+    input{
+      text-transform: uppercase;
+    }
     .modal-content{
       width: 340px;
       height: 530px;
