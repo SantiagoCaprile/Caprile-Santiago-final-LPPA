@@ -157,6 +157,10 @@ input:focus{
     margin-top: 0px;
   }
 
+  .teclado-mobile{
+    display: none;
+  }
+
   .oculto{
     display: none;
   }
@@ -184,5 +188,34 @@ input:focus{
       font-size: 35px;
       font-weight: bold;
       color: red;
+    }
+    .teclado-mobile{
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    .teclado-row{
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      margin-top: 5px;
+    }
+    .teclado-btn{
+      width: 10%;
+      height: 40px;
+      border-radius: 10px;
+      margin-top: 20px;
+      text-align: center;
+      font-weight: bold;
+    }
+    #btn-enter, #btn-borrar{
+      background-color: #ffc107;
+    }
+    #btn-enter{
+      width: 20%;
     }
   }

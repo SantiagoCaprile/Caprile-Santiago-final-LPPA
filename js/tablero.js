@@ -10,6 +10,7 @@ window.onload = function() {
     cronometro.innerHTML = "00:00";
     var cronometro_segundos = 0;
     var cronometro_minutos = 0;
+    var ultimoInput = "";
 
     llenarTablero = function() {
         for(var i=0; i<CANT_FILAS; i++){
@@ -23,6 +24,9 @@ window.onload = function() {
                 var letra = document.createElement("input");
                 letra.setAttribute("id",`f${i}c${j}`);
                 letra.setAttribute("maxlength","1");
+                letra.onfocus = function(e) {
+                    ultimoInput = e.target;
+                }
                 fila.appendChild(letra);
             }
         }
@@ -306,6 +310,48 @@ window.onload = function() {
         e.preventDefault();
         window.location.href = "index.html";
     }
+
+    //teclado virtual
+    var teclado = document.getElementsByClassName("teclado-btn");
+    for(var i = 0; i < teclado.length; i++){
+        teclado[i].onclick = function(e) {
+            e.preventDefault();
+            if(e.target.id != "btn-borrar" || e.target.id != "btn-enter") {
+                const input_letra = obtenerPrimerVacio();
+                if(input_letra.parentElement.disabled == false){
+                    input_letra.value = e.target.id[4].toUpperCase();
+                    if(input_letra.nextSibling != null && input_letra.value != "" ){
+                        input_letra.nextSibling.focus();
+                    }
+                }
+            }
+        }
+    }
+    var teclaEnter = document.getElementById("btn-enter");
+    teclaEnter.onclick = function(e) {
+        e.preventDefault();
+        ultimoInput.focus();
+        //simula que se presiono la tecla enter
+        var event = new KeyboardEvent("keydown", {
+            "key": "Enter",
+            "keyCode": 13,
+            "which": 13
+        });
+        ultimoInput.parentElement.dispatchEvent(event);
+    }
+
+    var teclaBorrar = document.getElementById("btn-borrar");
+    teclaBorrar.onclick = function(e) {
+        e.preventDefault();
+        const inputLetra = ultimoInput;
+        inputLetra.value = "";
+        if(inputLetra.previousSibling != null){
+            inputLetra.previousSibling.focus();
+        }else{
+            inputLetra.focus();
+        }
+    }
+
 
     if(partidaExistente == "" || localStorage.getItem("nombre") == ""){
         location.href = "index.html";
