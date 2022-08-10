@@ -11,7 +11,6 @@ window.onload = function() {
             var celdaNombre = document.createElement("td");
             celdaNombre.innerHTML = partidas[i].nombre;
             tiempo = new Date(partidas[i].tiempo);
-            console.log(tiempo.getSeconds());
             var celdaTiempo = document.createElement("td");
             celdaTiempo.innerHTML = (tiempo.getMinutes()<10? "0" + tiempo.getMinutes() : tiempo.getMinutes()) 
             + ":" + (tiempo.getSeconds()<10? "0" + tiempo.getSeconds() : tiempo.getSeconds());

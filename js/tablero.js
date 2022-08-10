@@ -148,39 +148,39 @@ window.onload = function() {
 
     logicaJuego = function(i,intervalo) {
         var fieldset = document.getElementById(`row${i}`);
-            fieldset.onkeydown = function (event){
-                if(event.key === "Enter" && lineaEstaCompleta(i) && PALABRA_GANADORA.length != 0){
-                    var respuestas = guardarRespuesta();
-                    var gano = revisarLinea(respuestas[i], i);
-                    pintarTablero();
-                    if(gano){
-                        clearInterval(intervalo);
-                        document.getElementById("btn-guardar").classList.add("oculto");
-                        document.getElementById("btn-volver").classList.remove("oculto");
-                        document.activeElement.parentElement.disabled = true;
-                        document.getElementById("modal-gano").classList.remove("oculto");
-                    } else if (i === CANT_FILAS - 1){
-                        clearInterval(intervalo);
-                        document.getElementById("btn-guardar").classList.add("oculto");
-                        document.getElementById("btn-volver").classList.remove("oculto");
-                        document.activeElement.parentElement.disabled = true;
-                        document.activeElement.blur();
-                        document.getElementById("solucion").innerHTML = "La palabra ganadora era: " + PALABRA_GANADORA;
-                        document.getElementById("modal-perdio").classList.remove("oculto");
-                    }
-                    if(document.activeElement.parentElement.nextElementSibling != null){
-                        document.activeElement.parentElement.nextElementSibling.disabled = false;
-                        document.activeElement.parentElement.nextElementSibling.firstChild.focus();
-                        document.activeElement.parentElement.previousElementSibling.disabled = true;
-                    }
+        fieldset.onkeydown = function (event){
+            if(event.key === "Enter" && lineaEstaCompleta(i) && PALABRA_GANADORA.length != 0){
+                var respuestas = guardarRespuesta();
+                var gano = revisarLinea(respuestas[i], i);
+                pintarTablero();
+                if(gano){
+                    clearInterval(intervalo);
+                    document.getElementById("btn-guardar").classList.add("oculto");
+                    document.getElementById("btn-volver").classList.remove("oculto");
+                    document.activeElement.parentElement.disabled = true;
+                    document.getElementById("modal-gano").classList.remove("oculto");
+                } else if (i === CANT_FILAS - 1){
+                    clearInterval(intervalo);
+                    document.getElementById("btn-guardar").classList.add("oculto");
+                    document.getElementById("btn-volver").classList.remove("oculto");
+                    document.activeElement.parentElement.disabled = true;
+                    document.activeElement.blur();
+                    document.getElementById("solucion").innerHTML = "La palabra ganadora era: " + PALABRA_GANADORA;
+                    document.getElementById("modal-perdio").classList.remove("oculto");
                 }
-                if(event.key === "Backspace"){
-                    document.activeElement.value = "";
-                    if(document.activeElement.previousSibling != null){
-                        document.activeElement.previousSibling.focus();
-                    }
+                if(document.activeElement.parentElement.nextElementSibling != null){
+                    document.activeElement.parentElement.nextElementSibling.disabled = false;
+                    document.activeElement.parentElement.nextElementSibling.firstChild.focus();
+                    document.activeElement.parentElement.previousElementSibling.disabled = true;
                 }
             }
+            if(event.key === "Backspace"){
+                document.activeElement.value = "";
+                if(document.activeElement.previousSibling != null){
+                    document.activeElement.previousSibling.focus();
+                }
+            }
+        }
     }
 
     inicio = function() {
@@ -273,7 +273,7 @@ window.onload = function() {
             respuestas: respuestas,
             PALABRA_GANADORA: PALABRA_GANADORA,
             tiempo: crono,
-            terminada: false
+            ganada: false
         }
         var partidas = JSON.parse(localStorage.getItem("partidas"));
         if(partidas == null){
@@ -304,11 +304,8 @@ window.onload = function() {
 
     var partidaExistente = localStorage.getItem("partida");
     if(partidaExistente != "" && localStorage.getItem("nombre") != ""){
-        console.log("partida existente");
-        console.log(partidaExistente);
         cargarPartida();
     } else {
-        console.log("partida nueva");
         inicio();
     }
 
