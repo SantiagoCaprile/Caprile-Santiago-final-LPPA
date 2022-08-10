@@ -160,13 +160,27 @@ td, th{
     .principal{
         width: 100%;
     }
+    .incompletas{
+        width: 100%;
+    }
     h1{
         font-size: 50px;
+        text-align: left;
+    }
+    .controles{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .botones{
+        margin: 5px 0px;
     }
     .tabla{
         width: 80%
     }
     td, th{
+        padding: 5px;
         font-size: 30px;
     }
     .top-div{
@@ -174,7 +188,11 @@ td, th{
         justify-content: space-between;
         margin-bottom: 20px;
     }
-    h1{
-        text-align: left;
+    .modal-content{
+        width: 80%;
+    }
+    #botones-modal .botones{
+        width: 120px;
+        font-size: 30px;
     }
 }
