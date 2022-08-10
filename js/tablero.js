@@ -282,6 +282,7 @@ window.onload = function() {
         var partidas = JSON.parse(localStorage.getItem("partidas"));
         if(partidas == null){
             partidas = [];
+            partidas.push(partida);
         } else if (partidas[codPartida]){ //la partida ya estaba guardada, se actualiza
             partidas[codPartida] = partida;
         } else { //la partida no estaba guardada, se agrega
