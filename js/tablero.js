@@ -159,6 +159,7 @@ window.onload = function() {
                     document.getElementById("btn-volver").classList.remove("oculto");
                     document.activeElement.parentElement.disabled = true;
                     document.getElementById("modal-gano").classList.remove("oculto");
+                    guardarPartida(true);//mando true porque gano
                 } else if (i === CANT_FILAS - 1){
                     clearInterval(intervalo);
                     document.getElementById("btn-guardar").classList.add("oculto");
@@ -167,6 +168,7 @@ window.onload = function() {
                     document.activeElement.blur();
                     document.getElementById("solucion").innerHTML = "La palabra ganadora era: " + PALABRA_GANADORA;
                     document.getElementById("modal-perdio").classList.remove("oculto");
+                    borrarPartida();
                 }
                 if(document.activeElement.parentElement.nextElementSibling != null){
                     document.activeElement.parentElement.nextElementSibling.disabled = false;
@@ -261,7 +263,7 @@ window.onload = function() {
         }
     }
 
-    function guardarPartida(){
+    function guardarPartida(gano){
         var nombre = localStorage.getItem("nombre");
         var codPartida = localStorage.getItem("partida");
         var respuestas = guardarRespuesta();
@@ -273,7 +275,7 @@ window.onload = function() {
             respuestas: respuestas,
             PALABRA_GANADORA: PALABRA_GANADORA,
             tiempo: crono,
-            ganada: false
+            ganada: gano
         }
         var partidas = JSON.parse(localStorage.getItem("partidas"));
         if(partidas == null){
@@ -286,9 +288,18 @@ window.onload = function() {
         localStorage.setItem("partidas", JSON.stringify(partidas));
     }
 
+    //si la partida existe, se borra
+    function borrarPartida(){
+        var codPartida = localStorage.getItem("partida");
+        if(codPartida != ""){
+        var partidas = JSON.parse(localStorage.getItem("partidas"));
+        partidas.splice(codPartida,1);
+        localStorage.setItem("partidas", JSON.stringify(partidas));
+        }
+    }
     btnGuardar.onclick = function(e) {
         e.preventDefault();
-        guardarPartida();
+        guardarPartida(false);//mando false pq no gano
         btnGuardar.classList.add("oculto");
         window.location.href = "index.html";
     }
