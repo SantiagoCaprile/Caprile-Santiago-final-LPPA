@@ -1,5 +1,8 @@
 const CANT_FILAS = 6;
 const CANT_COLUMNAS = 5;
+const listaAuxiliares = ["ARCOR","BANCO", "BARCO", "CARRO", "CANTO", "RONCA", "MOSCA",
+"POSTA", "PLATO", "LAICO", "FLACO", "GORDO", "ENTRE", "QUIEN", "JUGAR", "MESSI", "HARRY",
+"TRIGO", "LIRIO", "HABIA", "RENGO", "GANZO", "MATON", "RATON"];
 var PALABRA_GANADORA = "";
 
 window.onload = function() {
@@ -193,6 +196,9 @@ window.onload = function() {
             localStorage.setItem("partidas",[]);
         }
         prepararPalabras();
+        if(PALABRA_GANADORA == ""){
+            PALABRA_GANADORA = listaAuxiliares[Math.floor(Math.random() * listaAuxiliares.length)];
+        }
         llenarTablero();
         for(let i = 0; i<CANT_FILAS; i++){
             logicaJuego(i,intervalo);
