@@ -263,6 +263,7 @@ window.onload = function() {
 
     function guardarPartida(){
         var nombre = localStorage.getItem("nombre");
+        var codPartida = localStorage.getItem("partida");
         var respuestas = guardarRespuesta();
         var crono = new Date();
         crono.setSeconds(cronometro_segundos);
@@ -271,13 +272,17 @@ window.onload = function() {
             nombre: nombre,
             respuestas: respuestas,
             PALABRA_GANADORA: PALABRA_GANADORA,
-            tiempo: crono
+            tiempo: crono,
+            terminada: false
         }
         var partidas = JSON.parse(localStorage.getItem("partidas"));
         if(partidas == null){
             partidas = [];
+        } else if (partidas[codPartida]){ //la partida ya estaba guardada, se actualiza
+            partidas[codPartida] = partida;
+        } else { //la partida no estaba guardada, se agrega
+            partidas.push(partida);
         }
-        partidas.push(partida);
         localStorage.setItem("partidas", JSON.stringify(partidas));
     }
 
@@ -285,9 +290,7 @@ window.onload = function() {
         e.preventDefault();
         guardarPartida();
         btnGuardar.classList.add("oculto");
-        setTimeout(function(){
-            window.location.href = "index.html";
-        } ,1000);
+        window.location.href = "index.html";
     }
 
     btnVolver.onclick = function(e) {
