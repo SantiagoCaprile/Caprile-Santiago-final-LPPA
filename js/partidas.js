@@ -48,12 +48,12 @@ window.onload = function() {
                 var fila = document.createElement("tr");
                 var celdaNombre = document.createElement("td");
                 celdaNombre.innerHTML = ganadas[i].nombre;
-                var fecha = new Date(ganadas[i].tiempo);
+                const fecha = new Date(ganadas[i].tiempo);
                 var celdaTiempo = document.createElement("td");
                 celdaTiempo.innerHTML = (fecha.getMinutes()<10? "0" + fecha.getMinutes() : fecha.getMinutes())
                 + ":" + (fecha.getSeconds()<10? "0" + fecha.getSeconds() : fecha.getSeconds());
                 var celdaFecha = document.createElement("td");
-                celdaFecha.innerHTML = fecha.getDay() + "/" + fecha.getMonth() + "/" + fecha.getFullYear();
+                celdaFecha.innerHTML = fecha.getDate() + "/" + (fecha.getMonth() + 1) + "/" + fecha.getFullYear();
                 fila.appendChild(celdaNombre);
                 fila.appendChild(celdaTiempo);
                 fila.appendChild(celdaFecha);

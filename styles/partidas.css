@@ -127,16 +127,11 @@ td, th{
     align-items: center;
 }
 
-.div-controles{
-    width: 50%;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 15px;
+.modal-main .top-div{
+    width: 80%;
 }
 
-.div-controles .botones{
+#botones-modal .botones{
     width: 150px;
 }
 
