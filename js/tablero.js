@@ -90,10 +90,8 @@ window.onload = function() {
 
     document.onkeydown = function(e){
         e.preventDefault();
-        if(e.keyCode > 64 && e.keyCode < 91 || e.keyCode === 192) {
+        if(e.key >= "a" && e.key <= "z" || e.key === "ñ" || e.key === "Ñ") {
             document.activeElement.value = e.key.toUpperCase();
-        }
-        if(e.key != "Enter" && e.key != "Backspace"){
             const input_letra = document.activeElement;
             if(input_letra.nextSibling != null && input_letra.value != ""){
                 input_letra.nextSibling.focus();
