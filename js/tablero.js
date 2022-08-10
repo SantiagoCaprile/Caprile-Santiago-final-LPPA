@@ -229,6 +229,9 @@ window.onload = function() {
                 letra.setAttribute("id",`f${i}c${j}`);
                 letra.setAttribute("maxlength","1");
                 letra.value = respuestas[i][j];
+                letra.onfocus = function(e) {
+                    ultimoInput = e.target;
+                }
                 fila.appendChild(letra);
             }
         }
@@ -262,6 +265,9 @@ window.onload = function() {
             cronometro_segundos = tiempo.getSeconds();
             cronometro_minutos = tiempo.getMinutes();
             cargarTablero(partida.respuestas);
+            if(window.innerWidth < 768){ //para que no aparezca el teclado en celulares
+                ultimoInput.blur();
+            }
         }
     }
 
