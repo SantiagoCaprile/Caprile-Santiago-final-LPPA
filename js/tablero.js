@@ -323,6 +323,7 @@ window.onload = function() {
                     input_letra.value = e.target.id[4].toUpperCase();
                     if(input_letra.nextSibling != null && input_letra.value != "" ){
                         input_letra.nextSibling.focus();
+                        input_letra.nextElementSibling.blur();
                     }
                 }
             }
@@ -339,18 +340,34 @@ window.onload = function() {
             "which": 13
         });
         ultimoInput.parentElement.dispatchEvent(event);
+        ultimoInput.blur();
     }
 
     var teclaBorrar = document.getElementById("btn-borrar");
     teclaBorrar.onclick = function(e) {
         e.preventDefault();
-        const inputLetra = ultimoInput;
-        inputLetra.value = "";
-        if(inputLetra.previousSibling != null){
-            inputLetra.previousSibling.focus();
-        }else{
-            inputLetra.focus();
+        ultimoInput.focus();
+        var event = new KeyboardEvent("keydown", {
+            "key": "Backspace",
+            "keyCode": 8,
+            "which": 8
+        });
+        if(ultimoInput.value == ""){
+           ultimoInput.parentElement.dispatchEvent(event);
         }
+        ultimoInput.parentElement.dispatchEvent(event);
+        ultimoInput.blur();
+
+        // const inputLetra = ultimoInput;
+        // inputLetra.value = "";
+        // console.log(inputLetra.id);
+        // if(inputLetra.previousSibling != null){
+        //     inputLetra.previousSibling.focus();
+        //     inputLetra.previousSibling.blur();
+        // }else{
+        //     inputLetra.focus();
+        //     inputLetra.blur();
+        // }
     }
 
 
