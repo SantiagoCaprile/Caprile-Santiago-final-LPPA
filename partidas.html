@@ -12,23 +12,48 @@
 </head>
 <body>
     <div class="principal">
-        <div class="top-div">
-            <h1>Partidas Guardadas</h1>
-            <button class="botones" id="btn-volver">Volver</button>
+        <div class="incompletas">
+            <div class="top-div">
+                <h1>Partidas Guardadas</h1>
+                <div class="controles">
+                    <button class="botones" id="btn-ganadas">Ganadas</button>
+                    <button class="botones" id="btn-volver">Volver</button>
+                </div>
+            </div>
+            <!--Tabla de partidas-->
+            <table id="tabla-partidas" class="tabla">
+                <thead>
+                    <tr>
+                        <th>Jugador</th>
+                        <th>Tiempo</th>
+                        <th>Cargar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
         </div>
-        <!--Tabla de partidas-->
-        <table id="tabla-partidas">
-            <thead>
-                <tr>
-                    <th>Jugador</th>
-                    <th>Tiempo</th>
-                    <th>Cargar</th>
-                </tr>
-            </thead>
-            <tbody>
-            </tbody>
-        </table>
-        <div class="centro">
+        <div id="modal-ganadas" class="modal">
+            <div class="modal-content">
+              <div class="modal-main">
+                <span class="close" id="cerrar-gano">&times;</span>
+                <div class="div-controles">
+                    <button class="botones" id="ordena-tiempo">Por tiempo</button>
+                    <button class="botones" id="ordena-fecha">Por fecha</button>
+                </div>
+                <table id="tabla-ganadas" class="tabla">
+                    <thead>
+                        <tr>
+                            <th>Jugador</th>
+                            <th>Tiempo</th>
+                            <th>Fecha</th>
+                        </tr>
+                    </thead>
+                    <tbody id="lista-ganadas">
+                    </tbody>
+                </table>
+              </div>
+            </div>
         </div>
     </div>
 </body>
