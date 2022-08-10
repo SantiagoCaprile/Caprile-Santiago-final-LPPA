@@ -5,6 +5,7 @@ var PALABRA_GANADORA = "";
 window.onload = function() {
     const tablero = document.getElementById("tablero");
     const btnGuardar = document.getElementById("btn-guardar");
+    const btnVolver = document.getElementById("btn-volver");
     var cronometro = document.getElementById("cronometro");
     cronometro.innerHTML = "00:00";
     var cronometro_segundos = 0;
@@ -155,11 +156,13 @@ window.onload = function() {
                     if(gano){
                         clearInterval(intervalo);
                         document.getElementById("btn-guardar").classList.add("oculto");
+                        document.getElementById("btn-volver").classList.remove("oculto");
                         document.activeElement.parentElement.disabled = true;
                         document.getElementById("modal-gano").classList.remove("oculto");
                     } else if (i === CANT_FILAS - 1){
                         clearInterval(intervalo);
                         document.getElementById("btn-guardar").classList.add("oculto");
+                        document.getElementById("btn-volver").classList.remove("oculto");
                         document.activeElement.parentElement.disabled = true;
                         document.activeElement.blur();
                         document.getElementById("solucion").innerHTML = "La palabra ganadora era: " + PALABRA_GANADORA;
@@ -285,6 +288,11 @@ window.onload = function() {
         setTimeout(function(){
             window.location.href = "index.html";
         } ,1000);
+    }
+
+    btnVolver.onclick = function(e) {
+        e.preventDefault();
+        window.location.href = "index.html";
     }
 
     if(partidaExistente == "" || localStorage.getItem("nombre") == ""){
