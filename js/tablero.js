@@ -18,6 +18,23 @@ window.onload = function() {
     var cronometro_minutos = 0;
     var ultimoInput = "";
 
+    var colores = {
+        VERDE: 1,
+        AMARILLO: 2,
+        GRIS: 3,
+        BLANCO: 0
+    }
+
+    var colorTablero = [
+        [0,0,0,0,0],
+        [0,0,0,0,0],
+        [0,0,0,0,0],
+        [0,0,0,0,0],
+        [0,0,0,0,0],
+        [0,0,0,0,0],
+    ]
+
+    // Crea el tablero de juego desde cero
     llenarTablero = function() {
         for(var i=0; i<CANT_FILAS; i++){
             var fila = document.createElement("fieldset");
@@ -39,22 +56,7 @@ window.onload = function() {
         document.getElementById("f0c0").focus();
     }
 
-    var colores = {
-        VERDE: 1,
-        AMARILLO: 2,
-        GRIS: 3,
-        BLANCO: 0
-    }
-
-    var colorTablero = [
-        [0,0,0,0,0],
-        [0,0,0,0,0],
-        [0,0,0,0,0],
-        [0,0,0,0,0],
-        [0,0,0,0,0],
-        [0,0,0,0,0],
-    ]
-
+    // Selecciona la palabra ganadora de la api
     function prepararPalabras(){
         fetch('https://palabras-aleatorias-public-api.herokuapp.com/random-by-length?length=5')
         .then(response => response.json())
@@ -97,7 +99,7 @@ window.onload = function() {
             + ":" + (cronometro_segundos < 10 ? "0" + cronometro_segundos : cronometro_segundos);
         },1000);
     };
-
+    //Maneja la escritura en el tablero
     document.onkeydown = function(e){
         e.preventDefault();
         if(e.keyCode > 64 && e.keyCode <= 91 || e.key === "ñ" || e.key === "Ñ") {
@@ -108,7 +110,7 @@ window.onload = function() {
             }
         }
     }
-
+    //retorna un arreglo con todos valores de los inputs de la fila indicada
     obtenerValoresFila = function (indice){
         resultado = [CANT_COLUMNAS];
         for(var i = 0; i<CANT_COLUMNAS;i++){
@@ -116,7 +118,7 @@ window.onload = function() {
         }
         return resultado;
     }
-
+    //guarda la palabra ingresada en ese renglón
     guardarRespuesta = function(){
         respuestas = [CANT_FILAS];
         for(var i = 0; i < CANT_FILAS; i++){
@@ -124,7 +126,7 @@ window.onload = function() {
         }
         return respuestas;
     }
-    //verica si el renglon es correcto
+    //verica si el renglon es correcto y lo pinta segun la palabra ganadora
     revisarLinea = function(lineaRespuesta, indice){
         var ganadora = PALABRA_GANADORA.split("");
         var gano = 0;
@@ -141,7 +143,6 @@ window.onload = function() {
        });
        return gano === ganadora.length;
     }
-
     //verifica si el renglon tiene todas las letras
     lineaEstaCompleta = function(indice){
         var linea = obtenerValoresFila(indice);
@@ -153,7 +154,7 @@ window.onload = function() {
         });
         return completa;
     }
-
+    //la i es el indice del renglon
     logicaJuego = function(i,intervalo) {
         var fieldset = document.getElementById(`row${i}`);
         fieldset.onkeydown = function (event){
@@ -193,6 +194,7 @@ window.onload = function() {
         }
     }
 
+    //iniciar el juego desde cero
     inicio = function() {
         var intervalo = iniciarContador();
         if(localStorage.getItem("partidas") == []){
@@ -227,6 +229,14 @@ window.onload = function() {
         return inputs[0];
     }
 
+    reanudarJuego = function(fila) {
+        var intervalo = iniciarContador();
+        for(let i = fila; i<CANT_FILAS; i++){
+            logicaJuego(i,intervalo);
+        }
+    }
+
+    //carga la partida guardada
     cargarTablero = function(respuestas) {
         for(var i=0; i<CANT_FILAS; i++){
             var fila = document.createElement("fieldset");
@@ -255,13 +265,6 @@ window.onload = function() {
         }
         pintarTablero();
         reanudarJuego(fila);
-    }
-
-    reanudarJuego = function(fila) {
-        var intervalo = iniciarContador();
-        for(let i = fila; i<CANT_FILAS; i++){
-            logicaJuego(i,intervalo);
-        }
     }
 
     //carga la partida guardada en el localStorage
@@ -315,6 +318,7 @@ window.onload = function() {
         localStorage.setItem("partidas", JSON.stringify(partidas));
         }
     }
+
     btnGuardar.onclick = function(e) {
         e.preventDefault();
         guardarPartida(false);//mando false pq no gano
@@ -357,7 +361,6 @@ window.onload = function() {
         ultimoInput.parentElement.dispatchEvent(event);
         ultimoInput.blur();
     }
-
     var teclaBorrar = document.getElementById("btn-borrar");
     teclaBorrar.onclick = function(e) {
         e.preventDefault();
@@ -374,13 +377,12 @@ window.onload = function() {
         ultimoInput.blur();
     }
 
-    if(partidaExistente == "" || localStorage.getItem("nombre") == ""){
+    if(localStorage.getItem("nombre") == ""){
         location.href = "index.html";
     }
-
     var partidaExistente = localStorage.getItem("partida");
     if(partidaExistente != "" && localStorage.getItem("nombre") != ""){
-        cargarPartida();
+        cargarPartida(); //carga partida guardada->carga tablero->reanuda juego
     } else {
         inicio();
     }
