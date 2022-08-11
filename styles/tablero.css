@@ -219,3 +219,8 @@ input:focus{
       width: 20%;
     }
   }
+  @media (max-height: 768px){
+    .principal{
+      zoom: 85%;
+    }
+  }

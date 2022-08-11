@@ -174,3 +174,9 @@ form{
         height: 70px;
     }
 }
+
+@media (max-height: 768px){
+    .principal{
+        zoom: 85%;
+    }
+}
